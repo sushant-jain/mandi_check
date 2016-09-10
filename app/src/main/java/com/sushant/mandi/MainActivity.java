@@ -1,6 +1,5 @@
 package com.sushant.mandi;
 
-import android.app.DownloadManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +56,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        DataAccumulator stateDA=new DataAccumulator(this, new DataAccumulatedListener<String>() {
+            @Override
+            public void onDataAccumulated(ArrayList<String> stateArrayList) {
+                Log.d(TAG, "onCreate: stateArraysize"+stateArrayList.size());
+
+            }
+        });
+        stateDA.reqArrayBuilder(DataAccumulator.REQUEST_STATE_LIST);
+
+
+        DataAccumulator marketDA=new DataAccumulator(this, new DataAccumulatedListener<String>() {
+            @Override
+            public void onDataAccumulated(ArrayList<String> marketArrayList) {
+                Log.d(TAG, "onCreate: marketArraysize"+marketArrayList.size());
+
+            }
+        });
+        marketDA.reqArrayBuilder(DataAccumulator.REQUEST_MARKET_LIST);
+
 
 
     }
